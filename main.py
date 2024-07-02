@@ -1,13 +1,13 @@
 import requests
 from fastapi import FastAPI
-from app import routers
 from app.models import Pokemon, Base
 from app.database import engine, async_session
+from app.routers import pokemon
 
 
 app = FastAPI()
 
-app.include_router(routers, prefix="/api/v1")
+app.include_router(pokemon.router, prefix="/api/v1")
 
 async def fetch_and_store_pokemons():
     async with async_session() as session:

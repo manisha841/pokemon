@@ -5,6 +5,11 @@ from app.repository import pokemon_repository
 
 router = APIRouter()
 
+@router.get("/")
+async def hello():
+    return {"hello":"Hellow world"}
+
+
 @router.get("/pokemons")
 async def read_pokemons(name: str = None, type: str = None, db: AsyncSession = Depends(get_db)):
     if name:
